@@ -1,0 +1,17 @@
+###> inetum-orleans/docker-devbox ###
+/.docker/db/Dockerfile
+/*ddb.local.*
+/.bash_enter
+/.bash_leave
+/.bin/mysql
+/.bin/mysqldump
+/.bin/go
+/docker-compose.yml
+/.docker/db/fixuid.tar.gz
+/.docker/go/Dockerfile
+/.docker/go/fixuid.tar.gz
+/.bin/air
+###< inetum-orleans/docker-devbox ###
+
+tmp/**
+.env

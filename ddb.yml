@@ -1,0 +1,19 @@
+core:
+  domain:
+    sub: ddb-go-api-demo
+
+app:
+  api:
+    port: 4000
+  db:
+    user: 'user'
+    password: 'brie_de_mot_de_passe'
+    name: 'demo_db'
+
+docker:
+  cache_from_image: true
+  build_image_tag_from_version: false
+  build_image_tag: go1.24
+
+certs:
+  disabled: true

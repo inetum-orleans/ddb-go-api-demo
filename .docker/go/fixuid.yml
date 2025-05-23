@@ -1,0 +1,5 @@
+user: go
+group: go
+paths:
+  - /
+  - /go

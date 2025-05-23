@@ -1,0 +1,28 @@
+# Use the Red Hat Universal Base Image for RHEL 9
+FROM registry.access.redhat.com/ubi9/ubi
+
+# Install necessary packages
+RUN yum update -y && \
+    yum install -y wget tar && \
+    yum clean all
+
+# Set Go version
+ENV GO_VERSION=1.24.3
+
+# Download and install Go
+RUN wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
+    rm go${GO_VERSION}.linux-amd64.tar.gz
+
+# Set Go environment variables
+ENV GOROOT=/usr/local/go
+ENV GOPATH=/go
+ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+RUN useradd -m -s /bin/bash go && mkdir -p /go && chown go:go /go
+
+USER go
+
+RUN go install github.com/air-verse/air@latest
+
+CMD ["sleep", "infinity"]
