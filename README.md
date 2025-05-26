@@ -60,8 +60,8 @@ or
 make watch
 ```
 
-You can manualy rebuild and launch the binary without air by doing :
+To build the binary :
 
 ```
-make restart
+make build
 ```
