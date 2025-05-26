@@ -1,6 +1,6 @@
 local ddb = import 'ddb.docker.libjsonnet';
 
-local domain = std.join('.', [std.extVar('core.domain.sub'), std.extVar('core.domain.ext')]);
+local domain = std.extVar('core.domain.value');
 
 local app_workdir = '/app';
 
@@ -24,12 +24,12 @@ ddb.Compose() {
         },
     go: ddb.Build('go')
         + ddb.User()
-        + ddb.Binary('go', '/var/www/html', 'go')
-        + ddb.Binary('air', '/var/www/html', 'air', exe=true)
+        + ddb.Binary('go', '/app', 'go')
+        + ddb.Binary('air', '/app', 'air', exe=true)
         + ddb.Expose(std.extVar('app.api.port') + ':' + std.extVar('app.api.port'))
         + {
           volumes+: [
-            ddb.path.project + ':/var/www/html',
+            ddb.path.project + ':/app',
           ],
         },
   },
